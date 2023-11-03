@@ -3,11 +3,9 @@ import { resolve } from "path";
 import express from "express";
 import ingredients from "./routes/ingredients.js";
 import recipes from "./routes/recipes.js";
+import "dotenv/config.js"
 
-
-
-
-
+//console.log(process.env);
 const DB_PATH = resolve("./data/db.json");
 const PORT = 3000;
 
@@ -20,7 +18,7 @@ app.use(express.json());
 app.use("/ingredients", ingredients);
 app.use("/recipes", recipes);
 
-app.listen(PORT, () => {
+app.listen(process.env.PORT, () => {
     Data.read();
-    console.log(`listening on: 127.0.0.1:${PORT}`);
+    console.log(`listening on: 127.0.0.1:${process.env.PORT}`);
 })
